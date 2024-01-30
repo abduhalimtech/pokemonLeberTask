@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('pokemon', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->string('image')->nullable();
+            $table->integer('sorting_index')->default(0);
+            $table->enum('form', ['head', 'head_legs', 'fins', 'wings'])->nullable();
+            $table->string('location')->nullable();
             $table->timestamps();
         });
     }
