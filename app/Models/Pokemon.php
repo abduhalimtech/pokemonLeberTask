@@ -10,11 +10,16 @@ class Pokemon extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'image', 'sorting_index', 'form', 'location',
+        'name', 'image', 'sequence_number', 'form', 'location_id',
     ];
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 
     public function abilities()
     {
-        return $this->hasMany(Ability::class);
+        return $this->belongsToMany(Ability::class, 'pokemon_abilities');
     }
 }

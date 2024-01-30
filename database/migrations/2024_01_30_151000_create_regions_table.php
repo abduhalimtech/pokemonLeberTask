@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pokemon', function (Blueprint $table) {
+        Schema::create('regions', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('image');
-            $table->string('sequence_number')->nullable();
-            $table->enum('form', ['head', 'head_legs', 'fins', 'wings']);
-            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pokemon');
+        Schema::dropIfExists('regions');
     }
 };

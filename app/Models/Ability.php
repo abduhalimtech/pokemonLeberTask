@@ -9,12 +9,10 @@ class Ability extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'pokemon_id', 'name_en', 'name_ru', 'image',
-    ];
+    protected $fillable = ['name_en', 'name_ru', 'image'];
 
-    public function pokemon()
+    public function pokemons()
     {
-        return $this->belongsTo(Pokemon::class);
+        return $this->belongsToMany(Pokemon::class, 'pokemon_abilities');
     }
 }

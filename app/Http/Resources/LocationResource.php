@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PokemonResource extends JsonResource
+class LocationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +17,7 @@ class PokemonResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'image_url' => url('storage/' . $this->image),
-            'sequence_number' => $this->sequence_number,
-            'form' => $this->form,
-            'location' => new LocationResource($this->location),
-            'abilities' => AbilityResource::collection($this->abilities),
+            'region' => new RegionResource($this->whenLoaded('region')),
         ];
     }
 }
